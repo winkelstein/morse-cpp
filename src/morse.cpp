@@ -116,7 +116,7 @@ std::string Morse::strToMorse(const std::string &text)
 
     for (const auto &item : text)
     {
-        std::string encoded = this->encode(item);
+        std::string encoded = this->encode(item) + "/";
         result.insert(result.end(), encoded.begin(), encoded.end());
     }
 
@@ -129,7 +129,7 @@ void Morse::strToMorseSound(const std::string &text)
 
     for (const auto &item : text)
     {
-        std::string encoded = this->encode(item);
+        std::string encoded = this->encode(item) + "/";
         std::vector<int> symbol = this->encode_str(encoded);
         result.insert(result.end(), symbol.begin(), symbol.end());
     }
