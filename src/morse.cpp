@@ -5,7 +5,7 @@
 
 std::string Morse::encode(const char symbol)
 {
-    switch (symbol)
+    switch (std::tolower(symbol))
     {
     case 'a':
         return ".-";
