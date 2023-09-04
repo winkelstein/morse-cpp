@@ -5,7 +5,10 @@ int main()
 {
 	Morse morse;
 
-	std::string text = morse.strToMorse("sos");
-	std::cout << text << std::endl;
-	morse.strToMorseSound("sos");
+	std::string example;
+	std::cout << "Enter phrase to convert to the Morse code: ";
+	std::getline(std::cin, example);
+	std::string text = morse.strToMorse(example);
+	std::cout << "\"" << example << "\": " << text << std::endl;
+	morse.strToMorseSound(example);
 }
