@@ -1,0 +1,2 @@
+*.o
+build/morse-cpp
