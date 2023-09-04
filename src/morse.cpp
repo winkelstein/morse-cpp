@@ -93,13 +93,13 @@ std::vector<int> Morse::encode_str(const std::string &symbol)
 {
     std::vector<int> result;
 
-    for (size_t i = 0; i < symbol.length(); i++)
+    for (const auto &item : symbol)
     {
-        if (symbol[i] == '.')
+        if (item == '.')
             result.push_back(POINT_DUR);
-        else if (symbol[i] == '-')
+        else if (item == '-')
             result.push_back(DASH_DUR);
-        else if (symbol[i] == '/')
+        else if (item == '/')
         {
             result.push_back(SPACE_DUR);
             result.push_back(SPACE_DUR);
@@ -113,9 +113,10 @@ std::vector<int> Morse::encode_str(const std::string &symbol)
 std::string Morse::strToMorse(const std::string &text)
 {
     std::string result;
-    for (size_t i = 0; i < text.length(); i++)
+
+    for (const auto &item : text)
     {
-        std::string encoded = this->encode(text[i]);
+        std::string encoded = this->encode(item);
         result.insert(result.end(), encoded.begin(), encoded.end());
     }
 
@@ -126,19 +127,19 @@ void Morse::strToMorseSound(const std::string &text)
 {
     std::vector<int> result;
 
-    for (size_t i = 0; i < text.length(); i++)
+    for (const auto &item : text)
     {
-        std::string encoded = this->encode(text[i]);
+        std::string encoded = this->encode(item);
         std::vector<int> symbol = this->encode_str(encoded);
         result.insert(result.end(), symbol.begin(), symbol.end());
     }
 
-    for (size_t i = 0; i < result.size(); i++)
+    for (const auto &item : result)
     {
-        if (result[i] == 0)
+        if (item == 0)
             std::this_thread::sleep_for(std::chrono::milliseconds(SYMBOL_SPACE_DUR));
         else
-            beep(300, result[i]);
+            beep(300, item);
         std::this_thread::sleep_for(std::chrono::milliseconds(SYMBOL_SPACE_DUR));
     }
 }
